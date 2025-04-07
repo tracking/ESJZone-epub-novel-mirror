@@ -437,6 +437,7 @@ def imgTagConvert(inputHtml, imgDict: ImgThreadSafeDict):
 
 # 他妈的防御性编程，反反复复爬了一堆然后就报错，一看，哦，页面不规范，缺这个缺那的
 def downloadOneBook(url):
+    print(f"开始下载: {url}")
     epubCreateBook = epub.EpubBook()
     epubCreateBook.set_identifier(str(uuid.uuid4()))
     epubCreateBook.set_language("zh")
