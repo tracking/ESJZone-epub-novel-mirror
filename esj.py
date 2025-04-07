@@ -15,14 +15,19 @@ converter = opencc.OpenCC('t2s.json')
 # 是否为全部下载
 isDownloadAll = True
 # 全部下载的列表网址， 也可以类似 https://www.esjzone.cc/tags/R18/ 包含 /tags/?/ 或 /list-??/
-bookListURL = "https://www.esjzone.me/list-01/"
+bookListURL = "https://www.esjzone.one/list-01/"
 # 单次下载书籍URL
-bookURL = "https://www.esjzone.me/detail/1624182605.html"
+bookURL = "https://www.esjzone.one/detail/1624182605.html"
 # 多线程数(esjzone被cloudflare反向代理的。可能有反爬虫机制，不建议调太大)
 threadNum = 4
 # 站点url 可能为 https://www.esjzone.cc/ 或 https://www.esjzone.me/
 # 请确保bookListURL、bookURL、base_url的域名一致，同时esj.txt里cookie为对应的cookie！！！
-base_url = "https://www.esjzone.me/"
+base_url = "https://www.esjzone.one/"
+# 代理
+proxies = {
+    'http': 'http://clash.dnsftp.com:7890',
+    'https': 'http://clash.dnsftp.com:7890'
+}
 
 
 # esjzone 的 cookie请在浏览器中获取，将包含ews_key ews_token的cookie字符串(一行)填在脚本同文件夹下的esj.txt文件第一行
@@ -201,7 +206,7 @@ class DefaultResponse:
 
 @retrying.retry(stop_max_attempt_number=3, wait_fixed=10 * 1000)
 def retryGet(u, h, t):
-    return requests.get(u, headers=h, timeout=t)
+    return requests.get(u, headers=h, timeout=t, proxies=proxies)
 
 
 def getImgData(url):
@@ -660,7 +665,7 @@ if __name__ == "__main__":
         if parseBaseURL.netloc != paseBookURL.netloc or parseBaseURL.scheme != paseBookURL.scheme:
             print("请确保bookURL、base_url的协议与域名一致")
             sys.exit(1)
-    response = requests.get(base_url, headers=headers, timeout=(10, 25), allow_redirects=False)
+    response = requests.get(base_url, headers=headers, timeout=(10, 25), allow_redirects=False, proxies=proxies)
     if response.status_code == 301 or response.status_code == 302:
         print("请修改base_url为重定向后的url: " + response.headers['Location'])
         print("请确保bookListURL或bookURL与base_url的域名一致")
