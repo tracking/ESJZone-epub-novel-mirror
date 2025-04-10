@@ -252,7 +252,7 @@ def htmlSimplified(soup: BeautifulSoup, inputChildren: list[bs4.element.PageElem
     htmlResult = ""
     for child in inputChildren:
         if isinstance(child, Tag):
-            if child.name == "img":
+            if child.name == "img" and child.has_attr('src'):
                 htmlResult += imgDict.set(child['src'])
                 continue
             if child.find("img") is not None:
