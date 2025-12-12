@@ -15,14 +15,14 @@ converter = opencc.OpenCC('t2s.json')
 # 是否为全部下载
 isDownloadAll = True
 # 全部下载的列表网址， 也可以类似 https://www.esjzone.cc/tags/R18/ 包含 /tags/?/ 或 /list-??/
-bookListURL = "https://www.esjzone.one/list-01/"
+bookListURL = "https://www.esjzone.cc/list-01/"
 # 单次下载书籍URL
-bookURL = "https://www.esjzone.one/detail/1624182605.html"
+bookURL = "https://www.esjzone.cc/detail/1624182605.html"
 # 多线程数(esjzone被cloudflare反向代理的。可能有反爬虫机制，不建议调太大)
 threadNum = 4
 # 站点url 可能为 https://www.esjzone.cc/ 或 https://www.esjzone.me/
 # 请确保bookListURL、bookURL、base_url的域名一致，同时esj.txt里cookie为对应的cookie！！！
-base_url = "https://www.esjzone.one/"
+base_url = "https://www.esjzone.cc/"
 # 代理
 proxies = {
     'http': 'http://clash.dnsftp.com:7890',
@@ -279,7 +279,7 @@ def htmlSimplified(soup: BeautifulSoup, inputChildren: list[bs4.element.PageElem
                 htmlResult += '\n'.join(wrapped_paragraphs)
 
         else:
-            htmlResult += str(child)
+            htmlResult += '<p>' + str(child) + '</p>'
     return htmlResult + '\n'
 
 
