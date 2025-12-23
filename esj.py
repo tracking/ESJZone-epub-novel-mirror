@@ -470,9 +470,9 @@ def downloadOneBook(url):
             bookChangeDate = dates[-1]
     epubCreateBook.add_metadata(None, 'meta', '', {'name': 'esjLastChangeDate', 'content': bookChangeDate})
     if isDownloadAll and path.exists(f"./epubBooks_esjzone/《{bookName}》{bookAuthor}.epub"):
-        existBook = epub.read_epub(f"./epubBooks_esjzone/《{bookName}》{bookAuthor}.epub", {'ignore_ncx': True})
         existBookLastChangeDate = ''
         try:
+            existBook = epub.read_epub(f"./epubBooks_esjzone/《{bookName}》{bookAuthor}.epub", {'ignore_ncx': True})
             existBookLastChangeDate = existBook.get_metadata('OPF', 'esjLastChangeDate')[0][1]['content']
         except Exception as e:
             pass
