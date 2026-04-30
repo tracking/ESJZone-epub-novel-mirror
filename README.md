@@ -1,5 +1,7 @@
 # ESJZone 的简中小说EPUB全部备份
 
+**已转移到内部库, 本库不再更新**
+
 从项目 [/ZALin/ESJZone-novel-mirror/](https://github.com/ZALin/ESJZone-novel-mirror/tree/main) 修改而来
 
 包含原项目已经备份小说
